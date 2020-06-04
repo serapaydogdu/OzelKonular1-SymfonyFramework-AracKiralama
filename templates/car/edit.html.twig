@@ -1,0 +1,67 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}Edit Car{% endblock %}
+
+{% block body %}
+
+    <SCRIPT language="JavaScript" type="text/javascript">
+
+        function openWin( windowURL, windowName, windowFeatures ) { window.open( windowURL, windowName, windowFeatures );}
+
+    </SCRIPT>
+    <!-- start banner Area -->
+    <section class="banner-area relative" id="home">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                       User Profile
+                    </h1>
+                    <p class="text-white link-nav"><a href="/user">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="/user">User Car Edit</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End banner Area -->
+
+    <section class="blog-posts-area section-gap">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12 post-list blog-post-list col-md-10">
+                    <div class="single-post">
+
+                        <div class="row">
+                            {{ include('user/usermenu.html.twig') }}
+
+                            <div class = "col-md-8">
+                                <h3> <a href="#">User Car Edit </a> </h3>
+
+
+
+
+
+
+                                {{ include('car/_form.html.twig', {'button_label': 'Update'}) }}
+
+                                <a href="{{ path('user_car_index') }}">back to list</a>
+
+                                {{ include('car/_delete_form.html.twig') }}
+
+
+
+
+
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

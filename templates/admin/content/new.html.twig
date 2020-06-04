@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ car.title }}{% endblock %}
+
+{% block body %}
+    <br>
+    <h2>{{ car.title }}</h2>
+    <br>
+    <h5>Create New Content</h5>
+    <br>
+
+    {{ include('admin/content/_form.html.twig') }}
+
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Carid</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Number</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for content in contents %}
+            <tr>
+                <td>{{ content.id }}</td>
+                <td>{{ content.title }}</td>
+                <td>{{ content.carid }}</td>
+                <td>{{ content.description }}</td>
+                <td><img src="{{ asset('uploads/images/' ~ content.image) }}" height="60"></td>
+                <td>{{ content.price }}</td>
+                <td>{{ content.status }}</td>
+                <td>{{ content.number }}</td>
+                <td>
+
+                    <a href="{{ path('admin_content_edit', {'id': content.id, 'cid': car.id}) }}" class="btn btn-success">Edit</a>
+                </td>
+                <td>
+                    <form method="post" action="{{ path('admin_content_delete', {'id': content.id, 'cid': car.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ content.id) }}">
+                        <button class="btn btn-block btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+{% endblock %}

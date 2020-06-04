@@ -1,0 +1,106 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ app.user.name }} Profile {% endblock %}
+
+{% block body %}
+
+
+    <!-- start banner Area -->
+    <section class="banner-area relative" id="home">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                       User Profile
+                    </h1>
+                    <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="blog-home.html"> Reservations </a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End banner Area -->
+
+    <!-- Start blog-posts Area -->
+    <section class="blog-posts-area section-gap">
+        <div class="container">
+            <div class="row">
+                {{ include('user/usermenu.html.twig') }}
+
+
+                <div class="col-lg-4 sidebar">
+                    <div class="post-heading">
+
+                        <h3><a href="#">User Reservations List</a> </h3>
+
+                    </div>
+
+                    <div class="single-widget category-widget">
+                        <ul>
+
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Car</th>
+                                    <th>Content</th>
+                                    <th>Name</th>
+                                    <th>Surname</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Pickup</th>
+                                    <th>Dropoff</th>
+                                    <th>Days</th>
+                                    <th>Total</th>
+                                    <th>Message</th>
+                                    <th>Note</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for reservation in reservations %}
+                                    <tr>
+
+                                        <td>
+                                            <a href="{{ path("car_show",{"id":reservation.carid}) }}">
+                                                {{ reservation.cname }}
+                                            </a>
+                                        </td>
+                                        <td>{{ reservation.rname }}</td>
+                                        <td>{{ reservation.name }}</td>
+                                        <td>{{ reservation.surname }}</td>
+                                        <td>{{ reservation.email }}</td>
+                                        <td>{{ reservation.phone }}</td>
+                                        <td>{{ reservation.pickup|date('d-m-Y') }}</td>
+                                        <td>{{ reservation.dropoff|date('d-m-Y') }}</td>
+                                        <td>{{ reservation.days }}</td>
+                                        <td>{{ reservation.total }}</td>
+                                        <td>{{ reservation.message }}</td>
+                                        <td>{{ reservation.note }}</td>
+                                        <td>{{ reservation.status }}</td>
+                                        <td>{{ reservation.created_at }}</td>
+                                        <td>
+                                            <a href="{{ path('user_reservation_show', {'id': reservation.id}) }}" class="btn btn-info">Show</a>
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="19">no records found</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </ul>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End blog-posts Area -->
+
+
+{% endblock %}
+

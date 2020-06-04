@@ -1,0 +1,69 @@
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+<div class=""card-header>
+</div>
+
+<form id="demo-form2" name="category" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="" method="post">
+
+  <div class="card-body">
+
+    <div class="item form-group">
+        <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Parent<span class="required"></span>
+        </label>
+        <select id="category_parentid" name="category[parentid]" class="col-md-6 col-sm-6 ">
+                <option value="0">Main Category</option>
+                {% for cat in categories %}
+                     <option value="{{cat.id}}" {{ cat.id == category.parentid ? ' Selected': ''  }}> {{ cat.title }} </option>
+                {% endfor %}
+
+        </select>
+
+    </div>
+
+    <div class="item form-group">
+        <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Category Name<span class="required"></span>
+        </label>
+        <div class="col-md-6 col-sm-6 ">
+            <input type="text" id="category_title" name="category[title]" required="required" value="{{ category.title }}" class="form-control" >
+        </div>
+    </div>
+
+    <div class="item form-group">
+        <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Category Keywords</label>
+        <div class="col-md-6 col-sm-6 ">
+            <input id="category_keywords" name="category[keywords]" class="form-control" value="{{ category.keywords }}" type="text" >
+        </div>
+    </div>
+    <div class="item form-group">
+        <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Description</label>
+        <div class="col-md-6 col-sm-6 ">
+            <input id="category_description" name="category[description]" value="{{ category.description }}"class="form-control" type="text" >
+        </div>
+    </div>
+
+
+    <div class="item form-group">
+        <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Image</label>
+        <div class="col-md-6 col-sm-6 ">
+            <input id="category_image" name="category[image]" class="form-control" type="text" >
+        </div>
+    </div>
+
+    <div class="item form-group">
+        <label for="middle-name" class="col-form-label col-md-3 col-sm-3 label-align">Status</label>
+        <select id="category_status" name="category[status]" class="col-md-6 col-sm-6 ">
+            <option>{{ category.status }}</option>
+            <option> True </option>
+            <option> False </option>
+
+        </select>
+    </div>
+  </div>
+
+    <div class="item form-group">
+        <div class="col-md-6 col-sm-6 offset-md-3">
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+    </div>
+
+  </div>
+</form>

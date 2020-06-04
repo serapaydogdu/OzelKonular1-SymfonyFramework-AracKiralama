@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Content Index{% endblock %}
+
+{% block body %}
+    <h1>Content Index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Carid</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Number</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for content in contents %}
+            <tr>
+                <td>{{ content.id }}</td>
+                <td>{{ content.title }}</td>
+                <td>{{ content.carid }}</td>
+                <td>{{ content.description }}</td>
+                <td>{{ content.image }}</td>
+                <td>{{ content.price }}</td>
+                <td>{{ content.status }}</td>
+                <td>{{ content.number }}</td>
+                <td>
+                    <a href="{{ path('admin_content_show', {'id': content.id}) }}">Show</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

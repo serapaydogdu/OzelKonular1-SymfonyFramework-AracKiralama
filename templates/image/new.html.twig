@@ -1,0 +1,85 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap -->
+<link href="{{ asset('assets') }}/admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome -->
+<link href="{{ asset('assets') }}/admin/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<!-- NProgress -->
+<link href="{{ asset('assets') }}/admin/vendors/nprogress/nprogress.css" rel="stylesheet">
+
+<!-- Custom Theme Style -->
+<link href="{{ asset('assets') }}/admin/build/css/custom.min.css" rel="stylesheet">
+
+<div class="x_title">
+    <h2><br>    Image Galleri </h2>
+    <ul class="nav navbar-right panel_toolbox">
+    </ul>
+    <div class="clearfix"></div>
+</div>
+
+<div class="x_content">
+    <br>
+    <form role="form" id="demo-form2" name="image" action="{{ path('user_image_new', {'id':id}) }}" method="post" enctype="multipart/form-data" data-parsley-validate=""  novalidate="">
+
+        <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name"> Title <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+                <input type="text" id="image_title" name="image[title]" class="form-control" maxlength="50">
+                <input type="hidden" id="image_car" name="image[car]" class="form-control" value="{{ id }}">
+            </div>
+        </div>
+
+        <div class="item form-group">
+            <label class="col-form-label col-md-3 col-sm-3 label-align" for="last-name">Gallery Image <span class="required">*</span>
+            </label>
+            <div class="col-md-6 col-sm-6 ">
+                <input type="file" id="image_image" name="image[image]" required="required" class="form-control">
+            </div>
+        </div>
+
+
+        <div class="item form-group">
+            <div class="col-md-6 col-sm-6 offset-md-3">
+                <button type="submit" class="btn btn-success">Submit</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Image</th>
+        <th>actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for image in images %}
+        <tr>
+            <td>{{ image.id }}</td>
+            <td>{{ image.title }}</td>
+            <td> <img src="{{ asset('uploads/images/' ~ image.image) }}" height="60"></td>
+
+            <td>
+
+                <form method="post" action="{{ path('user_image_delete', {'id': image.id, 'cid': id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ image.id) }}">
+                    <button class="btn btn-block btn-danger">Delete</button>
+                </form>
+
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="4">no records found</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+

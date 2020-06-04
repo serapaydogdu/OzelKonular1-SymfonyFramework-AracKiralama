@@ -1,0 +1,133 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}{{ app.user.name }} Profile {% endblock %}
+
+{% block body %}
+
+
+    <!-- start banner Area -->
+    <section class="banner-area relative" id="home">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                      User Profile
+                    </h1>
+                    <p class="text-white link-nav"><a href="/user">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="/user">Reservation</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End banner Area -->
+
+    <!-- Start blog-posts Area -->
+    <section class="blog-posts-area section-gap">
+        <div class="container">
+            <div class="row">
+
+                {{ include('user/usermenu.html.twig') }}
+
+                <div class="col-lg-8 sidebar">
+
+                <h3>Reservation Form</h3><br>
+
+                <table class="table">
+                    <tr>
+                        <td>Car :</td>
+                        <td>{{ car.title }}</td>
+                    </tr>
+                    <tr>
+                        <td>Content :</td>
+                        <td>{{ content.title }}</td>
+                    </tr>
+                    <tr>
+                        <td>Price :</td>
+                        <td>{{ content.price }}</td>
+                    </tr>
+                    <tr>
+                        <td>Pickup Date :</td>
+                        <td>{{ data.pickup|date("m/d/Y") }}</td>
+                    </tr>
+                    <tr>
+                        <td>Drop off Date :</td>
+                        <td>{{ data.dropoff|date("m/d/Y") }}</td>
+                    </tr>
+                    <tr>
+                        <td>Nights :</td>
+                        <td>{{ data.days }}</td>
+                    </tr>
+                    <tr>
+                        <td>Total Price :</td>
+                        <td>{{ data.total }}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                </table>
+
+
+                    <div class="single-widget category-widget">
+                        <ul>
+
+                            {{ include('messages.html.twig') }}
+
+
+                            <form name="reservation" class="form-area " role="form"  method="post" class="contact-form text-right">
+                                <div class="row">
+                                    <div class="col-lg-5 form-group">
+
+                                        <input  id="reservation_name" name="reservation[name]" value="{{ app.user.name }}" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" class="common-input mb-20 form-control" required="" type="text">
+                                        <div class="validation"></div>
+
+                                        <input  id="reservation_surname" name="reservation[surname]" value="{{ app.user.surname }}" placeholder="Enter your surname" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your surname'" class="common-input mb-20 form-control" required="" type="text">
+                                        <div class="validation"></div>
+
+                                        <textarea class="common-textarea form-control" id="reservation_message" name="reservation[message]" placeholder="Message" maxlength="255" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Message'" required=""></textarea>
+                                        <div class="validation"></div>
+
+                                        <div class="mt-20 alert-msg" style="text-align: left;"></div>
+
+                                        <div class="text-center">
+                                            <input  type="hidden" id="pickup" name="pickup" value="{{ data.pickup|date('m/d/Y') }}" >
+                                            <input type="hidden" id="days" name="days" value="{{ data.days }}">
+                                            <br>**** CREDIT CARD INFORMATION **** <br>
+                                            <input type="hidden" name="token" value="{{ csrf_token('form-reservation') }}" />
+                                            <button class="primary-btn mt-20 text" type="submit" style="float: right;">Send a Reservation</button>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-6 form-group">
+
+
+                                        <input id="reservation_email" name="reservation[email]" value="{{ app.user.email }}" placeholder="Enter email address" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" class="common-input mb-20 form-control" required="" type="email">
+                                        <div class="validation"></div>
+
+                                        <input id="reservation_phone" name="reservation[phone]" placeholder="Enter your phone number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your phone'" class="common-input mb-20 form-control" required="" type="text">
+                                        <div class="validation"></div>
+
+                                        <div class="mt-20 alert-msg" style="text-align: left;"></div>
+
+                                    </div>
+                                </div>
+                            </form>
+
+
+
+                        </ul>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End blog-posts Area -->
+
+
+
+{% endblock %}
+

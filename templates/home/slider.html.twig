@@ -1,0 +1,46 @@
+<!-- Start model Area -->
+
+<section class="model-area section-gap" id="cars">
+    <div class="container">
+
+        <div class="row d-flex justify-content-center pb-40">
+            <div class="col-md-8 pb-40 header-text">
+                <h1 class="text-center pb-10">Choose your Desired Car Model</h1>
+                <p class="text-center">
+                    Who are in extremely love with eco friendly system.
+                </p>
+            </div>
+        </div>
+
+        <div class="active-model-carusel">
+
+            {% for rs in slider %}
+            <div class="row align-items-center single-model item">
+                <div class="col-lg-6 model-left">
+                    <div class="title justify-content-between d-flex">
+                        <h4 class="mt-20"> {{ rs.title }} </h4>
+                        <h2>{{rs.price}}<span>/day</span></h2>
+                    </div>
+                    <p>{{ rs.description }}</p>
+                    <p>
+                        Model            : {{rs.model}}   <br>
+                        Car Year         : {{rs.caryear}} <br>
+                        Fuel             : {{rs.fuel}}    <br>
+                        Transmission     : {{rs.transmission}}
+                    </p>
+
+                    <a class="text-uppercase primary-btn" href="#">Book This Car Now</a>
+                </div>
+                <div class="col-lg-6 model-right">
+                    <a href="{{ path('car_show', {'id': rs.id}) }}">
+                    <img class="img-fluid" src="{{ asset('uploads/images/' ~ rs.image) }}" alt="">
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+
+
+        </div>
+    </div>
+</section>
+<!-- End model Area -->

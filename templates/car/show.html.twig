@@ -1,0 +1,153 @@
+{% extends 'homebase.html.twig' %}
+
+{% block title %}Car index{% endblock %}
+
+{% block body %}
+
+    <SCRIPT language="JavaScript" type="text/javascript">
+
+        function openWin( windowURL, windowName, windowFeatures ) { window.open( windowURL, windowName, windowFeatures );}
+
+    </SCRIPT>
+
+    <!-- start banner Area -->
+    <section class="banner-area relative" id="home">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="about-content col-lg-12">
+                    <h1 class="text-white">
+                        User Profile
+                    </h1>
+                    <p class="text-white link-nav"><a href="/user">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="/user"> User Car Show</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End banner Area -->
+
+    <section class="blog-posts-area section-gap">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12 post-list blog-post-list col-md-10">
+                    <div class="single-post">
+
+                        <div class="row">
+                            {{ include('user/usermenu.html.twig') }}
+
+                            <div class = "col-md-8">
+                                <h3> <a href="#">User Car Detail </a> </h3>
+
+                                <table class="table">
+                                    <tbody>
+                                    <tr>
+                                        <th>Id</th>
+                                        <td>{{ car.id }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Title</th>
+                                        <td>{{ car.title }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Keywords</th>
+                                        <td>{{ car.keywords }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Description</th>
+                                        <td>{{ car.description }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Image</th>
+                                        <td><img src="{{ asset('uploads/images/' ~ car.image) }}" style="height: 40px" ></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Marka</th>
+                                        <td>{{ car.marka }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Model</th>
+                                        <td>{{ car.model }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Caryear</th>
+                                        <td>{{ car.caryear }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Fuel</th>
+                                        <td>{{ car.fuel }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Transmission</th>
+                                        <td>{{ car.transmission }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Capacity</th>
+                                        <td>{{ car.capacity }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Kilometre</th>
+                                        <td>{{ car.kilometre }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Price</th>
+                                        <td>{{ car.price }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Airbag</th>
+                                        <td>{{ car.airbag }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>City</th>
+                                        <td>{{ car.city }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Country</th>
+                                        <td>{{ car.country }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Location</th>
+                                        <td>{{ car.location }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Status</th>
+                                        <td>{{ car.status }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Created_at</th>
+                                        <td>{{ car.createdAt ? car.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Updated_at</th>
+                                        <td>{{ car.updatedAt ? car.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Detail</th>
+                                        <td>{{ car.detail|raw  }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Userid</th>
+                                        <td>{{ car.userid }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                                <a href="{{ path('user_car_index') }}">back to list</a>
+
+                                <a href="{{ path('user_car_edit', {'id': car.id}) }}" class="genric-btn warning radius" >Edit</a>
+
+                                {{ include('car/_delete_form.html.twig') }}
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+{% endblock %}
